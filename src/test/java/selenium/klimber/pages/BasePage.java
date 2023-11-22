@@ -60,6 +60,11 @@ public class BasePage {
         return webElement(locator).getText();
     }
 
+    public String getValue(By locator) {
+        wait.until(ExpectedConditions.visibilityOf(webElement(locator)));
+        return webElement(locator).getAttribute("value");
+    }
+
     public Boolean isChecked(By locator) {
         return webElement(locator).isSelected();
     }

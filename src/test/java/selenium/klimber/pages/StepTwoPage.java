@@ -32,6 +32,9 @@ public class StepTwoPage extends BasePage{
         sendKeys(heightInput, user.getProperty("height"));
         sendKeys(weightInput, user.getProperty("weight"));
         click(hospitalizedCheckboxFalse);
+    }
+
+    public void submitForm() {
         click(submitButton);
     }
 
