@@ -17,6 +17,7 @@ public class IndexPage extends BasePage{
     // Form inputs
     By birthdayInput = By.id("BirthdayStep1");
     By provinceDropdown = By.xpath("//*[contains(@id,\"province\")]//following-sibling::span");
+    By provinceFirstOption = By.xpath("//*[contains(@id,\"province\")]//option[1]");
     By provinceOption = By.xpath("//*[contains(@id,\"province\")]//option[text()='CABA']");
     By phoneCodeInput = By.id("txtPhoneCode");
     By phoneNumberInput = By.id("txtPhoneNumber");
@@ -59,6 +60,18 @@ public class IndexPage extends BasePage{
         sendKeys(phoneCodeInput, user.getProperty("phone_code"));
         sendKeys(phoneNumberInput, user.getProperty("phone_number"));
         click(phoneCodeInput);
+    }
+
+    public void submitForm() {
+        click(submitButton);
+    }
+
+    public void validateInitialValues() {
+        Assertions.assertEquals("Provincia", getText(provinceFirstOption));
+        Assertions.assertTrue(isEmpty(birthdayInput));
+        Assertions.assertTrue(isEmpty(phoneCodeInput));
+        Assertions.assertTrue(isEmpty(phoneNumberInput));
+
     }
 
     public void validatePrices() {

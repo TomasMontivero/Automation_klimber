@@ -60,4 +60,12 @@ public class BasePage {
         return webElement(locator).getText();
     }
 
+    public Boolean isChecked(By locator) {
+        return webElement(locator).isSelected();
+    }
+
+    public Boolean isEmpty(By locator) {
+        return webElement(locator).getAttribute("value").isEmpty();
+    }
+
 }

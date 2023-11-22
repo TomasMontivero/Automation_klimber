@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import selenium.klimber.pages.IndexPage;
+import selenium.klimber.pages.StepTwoPage;
 
 import java.util.logging.Logger;
 
@@ -13,21 +14,29 @@ public class KlimberTest {
 
     WebDriver driver;
     IndexPage indexPage;
+    StepTwoPage stepTwoPage;
 
     Logger logger = Logger.getLogger("KlimberTest");
 
     @Test
-    public void calculateLifeInsurance() {
-        logger.info("Index: Fill insurance form");
+    public void completeInsuranceForm() {
+        logger.info("Index: Insurance form");
         indexPage.navigateToIndexPage();
+        indexPage.validateInitialValues();
         indexPage.fillInInsuranceForm();
         indexPage.validatePrices();
+        indexPage.submitForm();
+        logger.info("Step 2: Health form");
+        stepTwoPage.validateInitialValues();
+        stepTwoPage.fillInHealthForm();
+
     }
 
     @BeforeEach
     public void setupEach() {
         driver = new ChromeDriver();
         indexPage = new IndexPage(driver);
+        stepTwoPage = new StepTwoPage(driver);
     }
 
     @AfterEach
