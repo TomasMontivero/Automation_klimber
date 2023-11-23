@@ -3,6 +3,7 @@ package selenium.klimber.pages;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class StepThreePage extends BasePage{
     public StepThreePage(WebDriver driver) {
@@ -56,8 +57,8 @@ public class StepThreePage extends BasePage{
         sendKeys(passowrd, user.getProperty("password"));
         sendKeys(addressStreet, user.getProperty("address_street"));
         sendKeys(addressNumber, user.getProperty("address_number"));
+        sendKeys(addressZipCode, user.getProperty("address_zipcode"));
         click(addressCityDropdown);
-        click(addressCityOption);
     }
 
     public void submitForm() {

@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import selenium.klimber.pages.IndexPage;
+import selenium.klimber.pages.StepFourPage;
 import selenium.klimber.pages.StepThreePage;
 import selenium.klimber.pages.StepTwoPage;
 
@@ -17,6 +18,7 @@ public class KlimberTest {
     IndexPage indexPage;
     StepTwoPage stepTwoPage;
     StepThreePage stepThreePage;
+    StepFourPage stepFourPage;
 
     Logger logger = Logger.getLogger("KlimberTest");
 
@@ -36,6 +38,10 @@ public class KlimberTest {
         stepThreePage.validateInitialValues();
         stepThreePage.fillInRegisterForm();
         stepThreePage.submitForm();
+        logger.info("Step 4: Additional info");
+        stepFourPage.validateInitialValues();
+        stepFourPage.fillInAdditionalInfoForm();
+        stepFourPage.submitForm();
     }
 
     @BeforeEach
@@ -44,6 +50,7 @@ public class KlimberTest {
         indexPage = new IndexPage(driver);
         stepTwoPage = new StepTwoPage(driver);
         stepThreePage = new StepThreePage(driver);
+        stepFourPage = new StepFourPage(driver);
     }
 
     @AfterEach
