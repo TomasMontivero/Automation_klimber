@@ -18,6 +18,7 @@ public class BasePage {
     WebDriverWait wait;
     Properties urls = new Properties();
     Properties user = new Properties();
+    Properties insurance = new Properties();
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
@@ -25,6 +26,7 @@ public class BasePage {
         try {
             urls.load(new FileInputStream("src/test/resources/properties/urls.properties"));
             user.load(new FileInputStream("src/test/resources/properties/user.properties"));
+            insurance.load(new FileInputStream("src/test/resources/properties/insurance.properties"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

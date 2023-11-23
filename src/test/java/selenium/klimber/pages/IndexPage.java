@@ -43,6 +43,9 @@ public class IndexPage extends BasePage{
     // Submit
     By submitButton = By.id("btnSaveStep1");
 
+    // Alert
+    By alertMessage = By.xpath("//div[text()='Lamentablemente, no se pudo procesar los datos, contactese con centro de soporte: Policy per person limit 1 reached.']");
+
 
     /*
     * Methods
@@ -75,17 +78,20 @@ public class IndexPage extends BasePage{
     }
 
     public void validatePrices() {
-        wait.until(ExpectedConditions.textToBe(totalInsuranceValue, "$ 230.000"));
-        Assertions.assertEquals("$ 44", getText(monthlyPriceValue));
-        Assertions.assertEquals("$ 230.000", getText(disabilityValue));
-        Assertions.assertEquals("$ 460.000", getText(accidentValue));
-        Assertions.assertEquals("$ 57.500", getText(illnessValue));
-        Assertions.assertEquals("$ 230.000", getText(coverageBoxValue));
-        Assertions.assertEquals("$ 460.000", getText(accidentBoxValue));
-        Assertions.assertEquals("$ 230.000", getText(disabilityBoxValue));
-        Assertions.assertEquals("$ 57.500", getText(illnessBoxValue));
+        wait.until(ExpectedConditions.textToBe(totalInsuranceValue, insurance.getProperty("total_insurance_value")));
+        Assertions.assertEquals(insurance.getProperty("monthly_price_value"), getText(monthlyPriceValue));
+        Assertions.assertEquals(insurance.getProperty("disability_value"), getText(disabilityValue));
+        Assertions.assertEquals(insurance.getProperty("accident_value"), getText(accidentValue));
+        Assertions.assertEquals(insurance.getProperty("illness_value"), getText(illnessValue));
+        Assertions.assertEquals(insurance.getProperty("coverage_box_value"), getText(coverageBoxValue));
+        Assertions.assertEquals(insurance.getProperty("accident_box_value"), getText(accidentBoxValue));
+        Assertions.assertEquals(insurance.getProperty("disability_box_value"), getText(disabilityBoxValue));
+        Assertions.assertEquals(insurance.getProperty("illness_box_value"), getText(illnessBoxValue));
     }
 
+    public void validateFinalMessage() {
+        Assertions.assertTrue(isPresent(alertMessage));
+    }
 
 
 }

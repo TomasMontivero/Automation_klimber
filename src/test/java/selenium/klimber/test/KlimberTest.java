@@ -5,10 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import selenium.klimber.pages.IndexPage;
-import selenium.klimber.pages.StepFourPage;
-import selenium.klimber.pages.StepThreePage;
-import selenium.klimber.pages.StepTwoPage;
+import selenium.klimber.pages.*;
 
 import java.util.logging.Logger;
 
@@ -16,9 +13,12 @@ public class KlimberTest {
 
     WebDriver driver;
     IndexPage indexPage;
-    StepTwoPage stepTwoPage;
-    StepThreePage stepThreePage;
-    StepFourPage stepFourPage;
+    HealthPage healthPage;
+    RegistrationPage registrationPage;
+    AdditionalInfoPage additionalInfoPage;
+    PaymentPage paymentPage;
+    BeneficiaryPage beneficiaryPage;
+    SummaryPage summaryPage;
 
     Logger logger = Logger.getLogger("KlimberTest");
 
@@ -31,26 +31,44 @@ public class KlimberTest {
         indexPage.validatePrices();
         indexPage.submitForm();
         logger.info("Step 2: Health form");
-        stepTwoPage.validateInitialValues();
-        stepTwoPage.fillInHealthForm();
-        stepTwoPage.submitForm();
+        healthPage.validateInitialValues();
+        healthPage.fillInHealthForm();
+        healthPage.submitForm();
         logger.info("Step 3: Register form");
-        stepThreePage.validateInitialValues();
-        stepThreePage.fillInRegisterForm();
-        stepThreePage.submitForm();
+        registrationPage.validateInitialValues();
+        registrationPage.fillInRegisterForm();
+        registrationPage.submitForm();
         logger.info("Step 4: Additional info");
-        stepFourPage.validateInitialValues();
-        stepFourPage.fillInAdditionalInfoForm();
-        stepFourPage.submitForm();
+        additionalInfoPage.validateInitialValues();
+        additionalInfoPage.fillInAdditionalInfoForm();
+        additionalInfoPage.submitForm();
+        logger.info("Step 5: Payment");
+        paymentPage.validateInitialValues();
+        paymentPage.fillInPaymentForm();
+        paymentPage.submitForm();
+        logger.info("Step 6: Beneficiary");
+        beneficiaryPage.addBeneficiary();
+        beneficiaryPage.validateInitialValues();
+        beneficiaryPage.fillInBeneficiaryForm();
+        beneficiaryPage.submitForm();
+        logger.info("Summary");
+        summaryPage.validateInitialValues();
+        summaryPage.submitForm();
+        logger.info("Index: Final message");
+        indexPage.validateFinalMessage();
     }
 
     @BeforeEach
     public void setupEach() {
         driver = new ChromeDriver();
         indexPage = new IndexPage(driver);
-        stepTwoPage = new StepTwoPage(driver);
-        stepThreePage = new StepThreePage(driver);
-        stepFourPage = new StepFourPage(driver);
+        healthPage = new HealthPage(driver);
+        registrationPage = new RegistrationPage(driver);
+        additionalInfoPage = new AdditionalInfoPage(driver);
+        paymentPage = new PaymentPage(driver);
+        beneficiaryPage = new BeneficiaryPage(driver);
+        summaryPage = new SummaryPage(driver);
+        driver.manage().window().maximize();
     }
 
     @AfterEach

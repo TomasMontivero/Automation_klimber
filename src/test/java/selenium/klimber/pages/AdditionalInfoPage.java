@@ -4,8 +4,8 @@ import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class StepFourPage extends BasePage{
-    public StepFourPage(WebDriver driver) {
+public class AdditionalInfoPage extends BasePage{
+    public AdditionalInfoPage(WebDriver driver) {
         super(driver);
     }
 

@@ -3,10 +3,9 @@ package selenium.klimber.pages;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class StepThreePage extends BasePage{
-    public StepThreePage(WebDriver driver) {
+public class RegistrationPage extends BasePage{
+    public RegistrationPage(WebDriver driver) {
         super(driver);
     }
 
